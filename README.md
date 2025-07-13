@@ -1,76 +1,94 @@
 # DocuReadAI
-
-A **Document Understanding Assistant** powered by LangChain, HuggingFace Embeddings, Chroma VectorDB, and IBM Watsonx LLMs. Built as part of the Coursera capstone project: _"Generative AI Applications with RAG and LangChain"_.
+**DocuReadAI** is an intelligent document understanding assistant built using LangChain, HuggingFace embeddings, Chroma vector store, and IBM Watsonx large language models. It enables seamless extraction of insights from PDF documents through natural language queries.
 
 ---
 
 ## 🔍 Overview
+This assistant allows users to upload any PDF, automatically extract and embed its content, and then query the document using natural language. Answers are generated based on relevant sections retrieved from a local vector database, enabling fast and contextually accurate responses.
 
-**DocuReadAI** enables real-time document analysis and question answering. It reads PDFs, splits content intelligently, embeds it into a vector store, and answers queries using IBM Watsonx's large language models.
+---
 
-Built with:
-- 🧠 **LangChain** for pipeline logic
-- 📚 **HuggingFace Embeddings** for document vectorization
-- 💾 **Chroma** as a local vector database
-- ☁️ **Watsonx.ai** for LLM inference
-- 🎛️ **Gradio** for a simple user interface
+## ⚙️ Tech Stack
+- 🧠 **LangChain** – Modular orchestration of document workflows
+- 💬 **HuggingFace Transformers** – Embedding model (`all-MiniLM-L6-v2`)
+- 🧱 **Chroma** – Lightweight local vector database
+- ☁️ **IBM Watsonx** – LLM inference via foundation models
+- 🎛️ **Gradio** – User-friendly browser interface
 
 ---
 
 ## 🚀 Features
-
-- Upload and process any PDF document
-- Query content via natural language
-- Retrieve exact answers from document context
-- Powered by Watsonx foundation models
+- Upload and process PDF files
+- Split and embed document content
+- Store semantic vectors locally
+- Retrieve contextually relevant chunks
+- Ask questions and get instant, accurate answers
+- Runs entirely on your machine with secure Watsonx API integration
 
 ---
 
-## 🏗️ Architecture
-
-```text
-PDF → LangChain Splitter → HuggingFace Embeddings → ChromaDB → Retriever → Watsonx LLM → Answer
-🛠️ Setup Instructions
-1. Clone the repository
+## 🔧Setup Instructions
+### 1. Clone the repo
+```bash
 git clone https://github.com/MrCoss/DocuReadAI.git
 cd DocuReadAI
+````
 
-2. Create .env file
+### 2. Prepare the `.env` file
+Create a `.env` file in the root directory with your IBM Cloud Watsonx credentials:
+```ini
 WATSONX_API_KEY=your_api_key_here
 WATSONX_PROJECT_ID=your_project_id_here
 WATSONX_URL=https://eu-gb.ml.cloud.ibm.com
 MODEL_ID=google/flan-ul2
+```
 
-3. Install dependencies
+> Keep your `.env` file private — do not commit it to version control.
+### 3. Install dependencies
+```bash
 pip install -r requirements.txt
+```
 
-4. Run the assistant
+### 4. Launch the app
+```bash
 python main.py
-📷 Screenshots
-Required for Coursera grading — include these in a /screenshots folder:
-pdf_loader.png – PDF loading code
-code_splitter.png – Text splitting logic
-embedding.png – HuggingFace embedding code
-vectordb.png – Chroma DB configuration
-retriever.png – Retriever setup
+```
+---
+## Interface
+Once launched, a Gradio UI opens in your browser:
 
-QA_bot.png – Gradio UI with sample query
+* Upload your PDF
+* Ask a question like:
+  *“What is this document about?”*
+* Get an answer powered by retrieval-augmented generation (RAG)
 
-📁 File Structure
-bash
-Copy
-Edit
+## 🖼️ Screenshots
+<img width="1911" height="862" alt="qa_bot" src="https://github.com/user-attachments/assets/7cd4a4e8-c079-404a-8d16-2b88882d1d1f" />
+<img width="547" height="227" alt="load_documents" src="https://github.com/user-attachments/assets/41d778a5-6020-4f67-a995-79cebb0e8b5c" />
+<img width="828" height="220" alt="split_text" src="https://github.com/user-attachments/assets/64211367-710d-4731-94fa-225967ce021a" />
+<img width="927" height="212" alt="embed_documents" src="https://github.com/user-attachments/assets/974a4a8c-1528-4413-9228-ab0c28a49d12" />
+<img width="582" height="191" alt="vector_db" src="https://github.com/user-attachments/assets/6b87bc49-5ff8-4dca-a1ab-b72b892b1859" />
+<img width="635" height="210" alt="retriver" src="https://github.com/user-attachments/assets/d07a6e42-5fd3-46eb-8a6e-c37a5153d5c4" />
+<img width="4560" height="1113" alt="Blank diagram" src="https://github.com/user-attachments/assets/7b73b50f-7172-4a71-8c75-e6efbdb2c617" />
+
+---
+
+## 📁 Project Structure
+```bash
 .
-├── main.py                # Core app logic
-├── .env                  # Your Watsonx API credentials (not committed)
-├── requirements.txt      # Python dependencies
-├── .gitignore            # Ignored files and folders
-└── README.md             # Project documentation
+├── main.py             # Full RAG pipeline (Tasks 1–6)
+├── .env                # Watsonx credentials (excluded from Git)
+├── requirements.txt    # Python packages
+├── .gitignore          # Ignored files/folders
+└── README.md           # Project documentation
 
-📄 License
-This project is released under the MIT License.
+## Example Query
+> **PDF:** Any research paper, legal document, or report
+> **Question:** `"What are the key findings in this paper?"`
+> **Answer:** Semantic summary generated by Watsonx LLM, grounded in embedded context from Chroma.
 
-👤 Author
+##
 Costas Pinto
-GitHub: MrCoss
-Coursera Capstone - IBM / DeepLearning.AI
+GitHub: [MrCoss](https://github.com/MrCoss)
+
+
